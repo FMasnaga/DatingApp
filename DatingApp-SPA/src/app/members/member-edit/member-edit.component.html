@@ -1,0 +1,62 @@
+
+<div class="container mt-3">
+  <div class="row">
+      <div class="col-4">
+        <h1> Your profile</h1>
+      </div>
+      <div class="col-8">
+        <div *ngIf=editForm.dirty class="alert alert-info">
+          <strong>Information: </strong> You have made changes 
+        </div>
+      </div>
+  
+  </div>
+  <div class="row">  
+    <div class="col-4">
+      <div class="card">
+        <img src="{{user.photoUrl}}" alt="{{user.knownAs}}" class="card-img-top img-thumbnail">
+        
+        <div class="card-body">
+          <strong>Location:</strong>
+          <p>{{user.city}}, {{user.country}}</p>
+          <strong>Last Active:</strong>
+          <p>{{user.lastActive}}</p>
+          <strong>Member since:</strong>
+          <p>{{user.created}}</p>
+        </div>
+
+        <div class="card-footer ">
+            <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Save</button>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-8">
+        <div class ="tab-panel">
+            <tabset class="member-tabset">
+              <tab heading="Edit Profile">
+                <form #editForm="ngForm" id="editForm" (submit)="updateProfile()">
+                  <h4>Description </h4>
+                  <textarea name="introduction"  rows="6" class="form-control" [(ngModel)]="user.introduction"></textarea>
+                  <h4>LookingFor </h4>
+                  <textarea name="lookingFor"  rows="6" class="form-control" [(ngModel)]="user.lookingFor"></textarea>
+                  <h4>Interest </h4>
+                  <textarea name="Interest"  rows="6" class="form-control" [(ngModel)]="user.interest"></textarea>
+                </form>
+                <h4>Location Detail </h4>
+                <div class="form-inline">
+                  <label>Country</label>
+                  <input type="text" class="form-control" name="Country" [(ngModel)]="user.country">
+                  <label>City</label>
+                  <input type="text" class="form-control" name="Country" [(ngModel)]="user.city">
+                </div>
+              </tab>
+
+              <tab heading="Edit Photos">
+                  <p>Edit Photos Go Here</p>
+              </tab>
+            </tabset>
+        </div>
+    </div>
+  </div>
+</div>
