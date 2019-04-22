@@ -25,14 +25,14 @@ namespace DatingApp.API.Dtos
         public string country {get;set;}
 
         [Required]
-        public DateTime createdTime {get;set;}
+        public DateTime Created{get;set;}
 
         [Required]
-        public DateTime lastActive {get;set;}
+        public DateTime LastActive {get;set;}
 
         public UserDto (){
-            this.createdTime = DateTime.Now;
-            this.lastActive = DateTime.Now;
+            this.Created = DateTime.Now;
+            this.LastActive = DateTime.Now;
         }
     }
 }

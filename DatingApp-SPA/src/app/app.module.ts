@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import {  ErrorInterceptorProvider } from './_services/error.interceptor';
 import { AlertifyService } from './_services/Alertify.service';
 import { BsDropdownModule, TabsModule, BsDatepickerModule } from 'ngx-bootstrap';
+import {TimeAgoPipe} from 'time-ago-pipe';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
@@ -47,8 +48,8 @@ export function tokenGetter() {
       ListsComponent,
       MessagesComponent,
       MemberCardComponent,
-      PhotoEditorComponent
-      
+      PhotoEditorComponent,
+      TimeAgoPipe
    ],
    imports: [
       BrowserModule,
