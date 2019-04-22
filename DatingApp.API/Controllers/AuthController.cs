@@ -37,13 +37,13 @@ namespace DatingApp.API.Controllers
                 return BadRequest ("Username has been used");
             }
             
-            User userToCreate = new User{
-                Username = dto.username
-            };
+            User userToCreate = _mapper.Map<User>(dto);
 
             var createdUser = await repo.register(userToCreate, dto.password);
             
-            return StatusCode(201);
+            var userToReturn = _mapper.Map<UserForDetailDto>(createdUser);
+
+            return CreatedAtRoute("GetUser", new {Controller = "User", id= createdUser.Id}, userToReturn);
 
         }
         
