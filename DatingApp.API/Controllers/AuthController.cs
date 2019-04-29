@@ -36,7 +36,7 @@ namespace DatingApp.API.Controllers
             if (await repo.userExists(dto.username)){
                 return BadRequest ("Username has been used");
             }
-            
+
             User userToCreate = _mapper.Map<User>(dto);
 
             var createdUser = await repo.register(userToCreate, dto.password);
