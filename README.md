@@ -29,28 +29,28 @@ The purpose of this app is to show my web development skills.
 <h2>Features</h2>
 <ul>
   <li>User login using JASON web token</li>
-  <img src="https://github.com/FMasnaga/CRM/blob/master/img/customer%20list.png">
+  <img src="https://github.com/FMasnaga/DatingApp/blob/master/img/login.png">
   <br/>
   <br/>
   <br/>
   <br/>
   
   <li>Registration using reactive form</li>
-  <img src="https://github.com/FMasnaga/CRM/blob/master/img/customer%20list.png">
+  <img src="https://github.com/FMasnaga/DatingApp/blob/master/img/registration.png">
   <br/>
   <br/>
   <br/>
   <br/>
   
   <li>Photo Upload (drag and drop)</li>
-  <img src="https://github.com/FMasnaga/CRM/blob/master/img/customer%20list.png">
+  <img src="https://github.com/FMasnaga/DatingApp/blob/master/img/userProfile.png">
   <br/>
   <br/>
   <br/>
   <br/>
   
   <li>Paging, Sorting, and Filtering functionalities</li>
-  <img src="https://github.com/FMasnaga/CRM/blob/master/img/customer%20list.png">
+  <img src="https://github.com/FMasnaga/DatingApp/blob/master/img/additional%20functionalities.png">
   <br/>
   <br/>
   <br/>
