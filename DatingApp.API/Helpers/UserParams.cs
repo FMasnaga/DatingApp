@@ -22,5 +22,10 @@ namespace DatingApp.API.Helpers
         public int MaxAge {get;set;} = 99;
         
         public string OrderBy {get;set;}
+
+        public bool UserLike {get;set;} = false;
+
+        public bool LikeMe {get;set;} = false; 
+
     }
 }

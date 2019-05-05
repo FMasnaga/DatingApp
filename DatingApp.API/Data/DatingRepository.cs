@@ -27,6 +27,11 @@ namespace DatingApp.API.Data
             this.context.Remove(entity);
         }
 
+        public async Task<Like> GetLike(int userId, int recipientId)
+        {
+            return await this.context.likes.FirstOrDefaultAsync(u => u.HisId== userId && u.HerId == recipientId);
+        }
+
         public async Task<Photo> GetMainPhoto( int userId)
         {
             //Console.WriteLine ("MAIN PHOTO Count : "+ context.photos.Where(u => u.UserId == userId)Count());
@@ -50,6 +55,18 @@ namespace DatingApp.API.Data
             var users =  this.context.users.Include(p=>p.photos).OrderByDescending(u=> u.LastActive).AsQueryable();
             users = users.Where(u => u.Id != userParams.UserId);
             users = users.Where(u => u.Gender == userParams.Gender);
+            Console.WriteLine("USER ID :"+userParams.UserId+" "+ userParams.UserLike);
+            if (userParams.UserLike){
+                var userILike = await GetUserIds (userParams.UserId, userParams.LikeMe);
+                users = users.Where (u => userILike.Contains(u.Id));
+            } 
+
+            if (userParams.LikeMe){
+                var userLikeMe = await GetUserIds (userParams.UserId, userParams.LikeMe);
+                users = users.Where (u => userLikeMe.Contains(u.Id));
+            }
+
+
             if (userParams.MaxAge != 18 || userParams.MaxAge != 99){
                 var maxDob = DateTime.Today.AddYears(-userParams.MinAge);
                 var minDob = DateTime.Today.AddYears (-userParams.MaxAge-1);
@@ -70,6 +87,16 @@ namespace DatingApp.API.Data
 
             return await PageList<User>.CreateAsync(users,userParams.PageNumber,userParams.PageSize);
         }
+
+        public async Task<IEnumerable<int>> GetUserIds (int id, bool LikeMe){
+            var user = await this.context.users.Include(x=>x.LikeHers).Include(x=>x.LikeHims).FirstOrDefaultAsync(u => u.Id == id);
+            
+            if (LikeMe){
+                return user.LikeHims.Where(x=>x.HerId==id).Select(l => l.HisId);
+            }
+            return user.LikeHers.Where(x=>x.HisId==id).Select(l => l.HerId);
+        }
+        
 
         public async Task<bool> SaveAll()
         {
